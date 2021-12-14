@@ -1,0 +1,15 @@
+version: "3"
+services:
+    mariadb:
+        image: wodby/mariadb:10.4-3.8.5
+        container_name: "BSA_php_auth_mariadb"
+        stop_grace_period: 30s
+        ports:
+          - "3306:3306"
+        environment:
+          MYSQL_ROOT_PASSWORD: laravel_root_pass
+          MYSQL_DATABASE: laravel
+          MYSQL_USER: laravel_user
+          MYSQL_PASSWORD: laravel
+        volumes:
+          - ./.mariadb-init:/docker-entrypoint-initdb.d # Place init .sql file(s) here.
